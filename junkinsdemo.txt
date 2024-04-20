@@ -1,0 +1,33 @@
+pipeline {
+     agent any
+     stages {
+          stage('git clone')
+              steps{
+                   git 'url'
+      }
+}
+      stage('mvn build)
+              steps{
+                   sh 'mvn clean package'
+}
+
+}
+      stage('docker image')
+              steps{
+                   sh 'docker build -t img .'
+
+  }
+}
+
+      stage('deployment')
+              steps{
+                   sh 'docker run -d -p 9090:8080 img'
+
+   }
+}
+ }
+
+
+}
+
+
